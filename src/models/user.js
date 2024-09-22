@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minlength: 7,
+      minlength: 8,
       trim: true,
       validate(value) {
         if (value.toLowerCase().includes("password")) {
@@ -51,9 +51,6 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    avatar: {
-      type: Buffer,
-    },
   },
   {
     timestamps: true,
@@ -72,7 +69,6 @@ userSchema.methods.toJSON = function () {
 
   delete userObject.password;
   delete userObject.tokens;
-  delete userObject.avatar;
 
   return userObject;
 };
